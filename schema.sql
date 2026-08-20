@@ -1,13 +1,7 @@
--- schema.sql
--- FreshShare database schema (matches the report's Users / Inventory_Items /
--- Shared_Listings / Claims design). Run this whole file in phpMyAdmin's
--- SQL tab (after creating/selecting the "freshshare" database), or via:
---   mysql -u root -p freshshare < schema.sql
 
 CREATE DATABASE IF NOT EXISTS freshshare;
 USE freshshare;
 
--- ---------- Users ----------
 CREATE TABLE IF NOT EXISTS Users (
   user_id        INT AUTO_INCREMENT PRIMARY KEY,
   name           VARCHAR(100) NOT NULL,
@@ -17,7 +11,6 @@ CREATE TABLE IF NOT EXISTS Users (
   created_at     DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- ---------- Inventory_Items ----------
 CREATE TABLE IF NOT EXISTS Inventory_Items (
   item_id          INT AUTO_INCREMENT PRIMARY KEY,
   user_id          INT NOT NULL,
@@ -32,7 +25,6 @@ CREATE TABLE IF NOT EXISTS Inventory_Items (
   INDEX idx_expiration_date (expiration_date)
 ) ENGINE=InnoDB;
 
--- ---------- Shared_Listings ----------
 CREATE TABLE IF NOT EXISTS Shared_Listings (
   listing_id    INT AUTO_INCREMENT PRIMARY KEY,
   item_id       INT NOT NULL,
@@ -44,7 +36,6 @@ CREATE TABLE IF NOT EXISTS Shared_Listings (
     ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- ---------- Claims ----------
 CREATE TABLE IF NOT EXISTS Claims (
   claim_id      INT AUTO_INCREMENT PRIMARY KEY,
   listing_id    INT NOT NULL,
