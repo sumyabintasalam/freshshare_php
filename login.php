@@ -1,5 +1,4 @@
 <?php
-// login.php
 require_once __DIR__ . '/includes/auth.php';
 
 if (currentUser()) {
