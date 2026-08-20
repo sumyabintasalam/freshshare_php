@@ -1,5 +1,4 @@
 <?php
-// inventory_add.php
 require_once __DIR__ . '/includes/auth.php';
 
 $user = requireLogin();
