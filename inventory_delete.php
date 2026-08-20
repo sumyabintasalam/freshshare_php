@@ -1,7 +1,5 @@
 <?php
-// inventory_delete.php
-// Deleting the item also removes any Shared_Listings / Claims rows tied to
-// it, via the ON DELETE CASCADE foreign keys defined in schema.sql.
+
 require_once __DIR__ . '/includes/auth.php';
 
 $user = requireLogin();
