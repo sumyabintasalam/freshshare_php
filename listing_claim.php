@@ -1,5 +1,4 @@
 <?php
-// listing_claim.php
 require_once __DIR__ . '/includes/auth.php';
 
 $user = requireLogin();
@@ -21,9 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ((int) $listing['owner_id'] === (int) $user['user_id']) {
         setFlash('error', 'You cannot claim your own listing.');
     } else {
-        // Wrap the insert + availability flip in a transaction so a claim
-        // can never be half-recorded (e.g. claim inserted but listing not
-        // marked unavailable, which would let a second person claim it too).
+       
         $pdo->beginTransaction();
         try {
             $stmt = $pdo->prepare("INSERT INTO Claims (listing_id, claimed_by) VALUES (?, ?)");
