@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $item_id = (int) ($_POST['item_id'] ?? 0);
     $quantity = $_POST['quantity'] ?? null;
 
-    // Ownership check: only update items that belong to the logged-in user.
     $stmt = $pdo->prepare("SELECT item_id FROM Inventory_Items WHERE item_id = ? AND user_id = ?");
     $stmt->execute([$item_id, $user['user_id']]);
     $owns = $stmt->fetch();
